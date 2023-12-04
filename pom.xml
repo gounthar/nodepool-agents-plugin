@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>2.36</version>
+        <version>4.51</version>
         <relativePath />
     </parent>
     <artifactId>nodepool-agents</artifactId>
@@ -18,12 +18,22 @@
         <!-- Jenkins version bump to support BlueOcean -->
         <!-- <jenkins.version>2.107.3</jenkins.version> -->
         <!-- Currently the Latest and Greatest -->
-        <jenkins.version>2.138.3</jenkins.version>
-        <java.level>8</java.level>
+        <jenkins.version>2.346.3</jenkins.version>
     </properties>
     <name>NodePool Agents Plugin</name>
     <description>Allows user to build on NodePool controlled cloud instances</description>
     <url>https://wiki.jenkins.io/display/JENKINS/NodePool+Agents+Plugin</url>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.jenkins.tools.bom</groupId>
+                <artifactId>bom-2.138.x</artifactId>
+                <version>4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
     <licenses>
         <license>
@@ -66,7 +76,7 @@
         <repository>
             <id>central</id>
             <name>bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <url>https://jcenter.bintray.com</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -220,12 +230,10 @@
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-job</artifactId>
-            <version>2.25</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>ssh-slaves</artifactId>
-            <version>1.29.1</version>
         </dependency>
         <!-- Required for newer Jenkins as hudson.plugins.sshslaves.SFTPClient was removed from ssh-slaves -->
         <!-- This dependency pulls in trilead-ssh2 which provides the SSH2 library/protocol in Java -->
@@ -237,17 +245,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>structs</artifactId>
-            <version>1.14</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>scm-api</artifactId>
-            <version>2.2.6</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>credentials</artifactId>
-            <version>2.1.18</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -258,7 +263,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>ssh-credentials</artifactId>
-            <version>1.14</version>
         </dependency>
         <dependency>
             <!-- CommandLauncher was detached from core some time ago (cf. https://github.com/jenkinsci/jenkins/pull/3076) -->
@@ -266,13 +270,11 @@
             <!-- Some discussion here: https://groups.google.com/forum/#!topic/jenkinsci-dev/OJ7JadgPUzE -->
             <groupId>${project.groupId}</groupId>
             <artifactId>command-launcher</artifactId>
-            <version>1.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>script-security</artifactId>
-            <version>1.39</version>
             <scope>test</scope>
         </dependency>
         <!-- If Jenkins >= 2.112 - avoids java.lang.NoClassDefFoundError: hudson/tools/JDKInstaller$FileSystem -->
